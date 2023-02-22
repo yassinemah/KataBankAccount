@@ -19,16 +19,16 @@ public class BankAccount {
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
-        transactions.add(new Transaction(LocalDate.now(), "Withdrawal", -amount, balance));
-    }
-
-    public double getBalance() {
-        return balance;
+        if (balance >= amount) {
+            balance -= amount;
+            transactions.add(new Transaction(LocalDate.now(), "Withdrawal", -amount, balance));
+        } else {
+            System.out.println("Insufficient funds");
+        }
     }
 
     public void printStatement() {
-        System.out.println("Date\t\tDescription\tAmount\tBalance");
+        System.out.println("Date\t\tType\tAmount\tBalance");
         for (Transaction transaction : transactions) {
             System.out.println(transaction);
         }
@@ -36,5 +36,9 @@ public class BankAccount {
 
     public List<Transaction> getTransactionHistory() {
         return transactions;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 }
