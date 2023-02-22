@@ -13,17 +13,17 @@ public class TransactionTest {
 
     public static void testConstructorAndGetters() {
         LocalDate date = LocalDate.now();
-        String type = "Deposit";
+        String operation = "Deposit";
         double amount = 100.0;
         double balance = 200.0;
 
-        Transaction transaction = new Transaction(date, type, amount, balance);
+        Transaction transaction = new Transaction(date, operation, amount, balance);
 
         if (!transaction.getDate().equals(date)) {
             System.out.println("Error: Transaction date does not match expected value");
         }
-        if (!transaction.getType().equals(type)) {
-            System.out.println("Error: Transaction type does not match expected value");
+        if (!transaction.getOperation().equals(operation)) {
+            System.out.println("Error: Transaction operation does not match expected value");
         }
         if (transaction.getAmount() != amount) {
             System.out.println("Error: Transaction amount does not match expected value");
@@ -35,13 +35,13 @@ public class TransactionTest {
 
     public static void testToString() {
         LocalDate date = LocalDate.now();
-        String type = "Deposit";
+        String operation = "Deposit";
         double amount = 100.0;
         double balance = 200.0;
 
-        Transaction transaction = new Transaction(date, type, amount, balance);
+        Transaction transaction = new Transaction(date, operation, amount, balance);
 
-        String expectedString = "Date: " + date.toString() + ", Type: " + type + ", Amount: "
+        String expectedString = "Date: " + date.toString() + ", operation: " + operation + ", Amount: "
                 + Double.toString(amount) + ", Balance: " + Double.toString(balance);
 
         if (!transaction.toString().equals(expectedString)) {

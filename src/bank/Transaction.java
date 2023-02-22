@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Transaction {
     private LocalDate date;
-    private String type;
+    private String operation;
     private double amount;
     private double balance;
 
-    public Transaction(LocalDate date, String type, double amount, double balance) {
+    public Transaction(LocalDate date, String operation, double amount, double balance) {
         this.date = date;
-        this.type = type;
+        this.operation = operation;
         this.amount = amount;
         this.balance = balance;
     }
@@ -19,8 +19,8 @@ public class Transaction {
         return date;
     }
 
-    public String getType() {
-        return type;
+    public String getOperation() {
+        return operation;
     }
 
     public double getAmount() {
@@ -33,6 +33,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%.2f\t%.2f", date, type, amount, balance);
+        return String.format("%s\t%s\t%.2f\t%.2f", date, operation, amount, balance);
     }
 }

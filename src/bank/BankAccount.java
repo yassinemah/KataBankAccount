@@ -28,7 +28,7 @@ public class BankAccount {
     }
 
     public void printStatement() {
-        System.out.println("Date\t\tType\tAmount\tBalance");
+        System.out.println("Date\t\toperation\tAmount\tBalance");
         for (Transaction transaction : transactions) {
             System.out.println(transaction);
         }
