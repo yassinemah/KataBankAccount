@@ -1,7 +1,7 @@
 package bank;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BankAccount {
@@ -9,66 +9,32 @@ public class BankAccount {
     private List<Transaction> transactions;
 
     public BankAccount() {
-        balance = 0.0;
+        balance = 0;
         transactions = new ArrayList<Transaction>();
     }
 
     public void deposit(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Invalid deposit amount");
-        }
         balance += amount;
-        Transaction transaction = new Transaction(new Date(), amount, balance, "Deposit");
-        transactions.add(transaction);
+        transactions.add(new Transaction(LocalDate.now(), "Deposit", amount, balance));
     }
 
     public void withdraw(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Invalid withdrawal amount");
-        }
-        if (amount > balance) {
-            throw new IllegalArgumentException("Insufficient funds");
-        }
         balance -= amount;
-        Transaction transaction = new Transaction(new Date(), amount, balance, "Withdrawal");
-        transactions.add(transaction);
+        transactions.add(new Transaction(LocalDate.now(), "Withdrawal", -amount, balance));
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public void printStatement() {
-        System.out.println("Date\t\t\tAmount\t\tBalance\t\tTransaction Type");
+        System.out.println("Date\t\tDescription\tAmount\tBalance");
         for (Transaction transaction : transactions) {
-            System.out.println(transaction.getDate() + "\t$" + transaction.getAmount() + "\t\t$"
-                    + transaction.getBalance() + "\t\t" + transaction.getType());
+            System.out.println(transaction);
         }
     }
 
-    private class Transaction {
-        private Date date;
-        private double amount;
-        private double balance;
-        private String type;
-
-        public Transaction(Date date, double amount, double balance, String type) {
-            this.date = date;
-            this.amount = amount;
-            this.balance = balance;
-            this.type = type;
-        }
-
-        public Date getDate() {
-            return date;
-        }
-
-        public double getAmount() {
-            return amount;
-        }
-
-        public double getBalance() {
-            return balance;
-        }
-
-        public String getType() {
-            return type;
-        }
+    public List<Transaction> getTransactionHistory() {
+        return transactions;
     }
 }
