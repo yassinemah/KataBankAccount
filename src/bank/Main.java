@@ -1,7 +1,5 @@
 package bank;
 
-import bank.BankAccount;
-
 // Main.java
 
 public class Main {
